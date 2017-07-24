@@ -1,0 +1,10 @@
+{
+    "name": "bieleckim/tdd-financial-calculations",
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "^6.2"
+    },
+    "autoload": {
+        "psr-4": { "FinancialCalculations\\": "src/FinancialCalculations/" }
+    }
+}
