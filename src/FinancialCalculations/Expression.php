@@ -4,7 +4,5 @@ namespace FinancialCalculations;
 
 interface Expression
 {
-
-	public function reduce(string $to) : Money;
-
+    public function reduce(string $to) : Money;
 }
