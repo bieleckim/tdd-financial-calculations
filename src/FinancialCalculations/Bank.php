@@ -4,6 +4,9 @@ namespace FinancialCalculations;
 
 class Bank
 {
+    /**
+     * @var int[]
+     */
     private $rates = [];
 
     public function reduce(Expression $source, string $to) : Money

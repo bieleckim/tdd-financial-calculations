@@ -4,10 +4,17 @@ namespace FinancialCalculations;
 
 class Sum implements Expression
 {
+    /**
+     * @var Expression
+     */
     public $augend;
+
+    /**
+     * @var Expression
+     */
     public $addend;
 
-    public function __construct(Money $augend, Money $addend)
+    public function __construct(Expression $augend, Expression $addend)
     {
         $this->augend = $augend;
         $this->addend = $addend;
@@ -15,6 +22,12 @@ class Sum implements Expression
 
     public function reduce(Bank $bank, string $to) : Money
     {
-        return new Money($this->augend->amount + $this->addend->amount, $to);
+        $amount = $this->augend->reduce($bank, $to)->amount + $this->addend->reduce($bank, $to)->amount;
+        return new Money($amount, $to);
+    }
+
+    public function sum(Expression $addend): Sum
+    {
+        return null;
     }
 }

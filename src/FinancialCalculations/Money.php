@@ -4,8 +4,14 @@ namespace FinancialCalculations;
 
 class Money implements Expression
 {
+    /**
+     * @var int
+     */
     public $amount;
 
+    /**
+     * @var string
+     */
     protected $currency;
 
     public function __construct(int $amount, string $currency)
@@ -30,17 +36,17 @@ class Money implements Expression
                $this->getCurrency() === $money->getCurrency();
     }
 
-    public function getCurrency()
+    public function getCurrency() : string
     {
         return $this->currency;
     }
 
-    public function times(int $multiplier) : Money
+    public function times(int $multiplier) : Expression
     {
         return new Money($this->amount * $multiplier, $this->currency);
     }
 
-    public function plus(Money $money) : Expression
+    public function plus(Expression $money) : Sum
     {
         return new Sum($this, $money);
     }
@@ -54,5 +60,10 @@ class Money implements Expression
     {
         $rate = $bank->rate($this->currency, $to);
         return new Money($this->amount / $rate, $to);
+    }
+
+    public function sum(Expression $addend): Sum
+    {
+        return new Sum($this, $addend);
     }
 }
