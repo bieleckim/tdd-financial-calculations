@@ -51,11 +51,6 @@ class Money implements Expression
         return new Sum($this, $money);
     }
 
-    public function __toString() : string
-    {
-        return $this->amount . ' ' . $this->currency;
-    }
-
     public function reduce(Bank $bank, string $to) : Money
     {
         $rate = $bank->rate($this->currency, $to);
