@@ -8,4 +8,8 @@ install:
   - travis_retry composer install --no-interaction
 
 script:
-  - vendor/bin/phpunit
+    - vendor/bin/phpunit --coverage-clover=coverage.xml
+    - ls -a
+
+after_success:
+    - bash <(curl -s https://codecov.io/bash)
