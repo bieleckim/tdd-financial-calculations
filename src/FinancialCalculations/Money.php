@@ -14,12 +14,12 @@ class Money implements Expression
         $this->currency = $currency;
     }
 
-    public static function createDollar(int $amount) : Money
+    public static function dollar(int $amount) : Money
     {
         return new Money($amount, 'USD');
     }
 
-    public static function createFranc(int $amount) : Money
+    public static function franc(int $amount) : Money
     {
         return new Money($amount, 'CHF');
     }
@@ -50,8 +50,9 @@ class Money implements Expression
         return $this->amount . ' ' . $this->currency;
     }
 
-    public function reduce(string $to) : Money
+    public function reduce(Bank $bank, string $to) : Money
     {
-        return $this;
+        $rate = $bank->rate($this->currency, $to);
+        return new Money($this->amount / $rate, $to);
     }
 }
