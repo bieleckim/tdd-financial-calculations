@@ -56,9 +56,4 @@ class Money implements Expression
         $rate = $bank->rate($this->currency, $to);
         return new Money($this->amount / $rate, $to);
     }
-
-    public function sum(Expression $addend): Sum
-    {
-        return new Sum($this, $addend);
-    }
 }

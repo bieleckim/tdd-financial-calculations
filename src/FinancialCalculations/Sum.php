@@ -26,11 +26,6 @@ class Sum implements Expression
         return new Money($amount, $to);
     }
 
-    public function sum(Expression $addend): Sum
-    {
-        return null;
-    }
-
     public function plus(Expression $addend) : Expression
     {
         return new Sum($this, $addend);
